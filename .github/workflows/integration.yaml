@@ -12,10 +12,9 @@ jobs:
         uses: actions/setup-node@v2-beta
         with: 
           node-version: 12
-
       - name: Installing Surge
-         run: npm install -g surge
+        run: npm install -g surge
       - name: deploying with surge
-         run: surge ./ ${{secrets.SURGE_DOMAIN}} --token ${{secrets.SURGE_TOKEN}}
+        run: surge ./ ${{secrets.SURGE_DOMAIN}} --token ${{secrets.SURGE_TOKEN}}
 
     
