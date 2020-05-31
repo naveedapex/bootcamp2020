@@ -1,0 +1,18 @@
+name :  Continious Deployment
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: checkout@v2
+
+      - run: echo "Setting up Node js"
+      - name: Setup Nodejs
+      uses: actions/setup-node@v1
+      with: 
+        node-version: 12.x
+      - run: npm install -g surge
+      - run: echo "Deploying Website"
+      - run: surge ./ ${{secrets.SURGE_DOMAIN}} --token ${{secrets.SURGE_TOKEN}}
+      - run: echo "please visit ${{secrets.SURGE_DOMAIN}}"
