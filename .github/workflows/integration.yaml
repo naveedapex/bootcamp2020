@@ -7,14 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: echo "Setting up Node js"
+     
       - name: Setup Nodejs
-      uses: actions/setup-node@v1
+        uses: actions/setup-node@v2-beta
       with: 
-        node-version: 12.x
+        node-version: 12
 
-      - run: npm install -g surge
-      - run: echo "Deploying Website"
-      - run: surge ./ ${{secrets.SURGE_DOMAIN}} --token ${{secrets.SURGE_TOKEN}}
-      
-      - run: echo "please visit ${{secrets.SURGE_DOMAIN}}"
+      - name: Installing Surge
+         run: npm install -g surge
+      - name: deploying with surge
+         run: surge ./ ${{secrets.SURGE_DOMAIN}} --token ${{secrets.SURGE_TOKEN}}
+
+    
